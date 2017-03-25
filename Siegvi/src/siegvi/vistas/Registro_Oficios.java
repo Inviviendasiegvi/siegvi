@@ -5,6 +5,15 @@
  */
 package siegvi.vistas;
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.text.Paragraph;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author giok
@@ -107,6 +116,11 @@ public class Registro_Oficios extends javax.swing.JFrame {
         jButton1.setText("Regresar");
 
         jButton2.setText("Guardar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -235,6 +249,27 @@ public class Registro_Oficios extends javax.swing.JFrame {
     private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_button1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        Document document = new Document();
+        try {
+            try {
+                PdfWriter.getInstance(document, new FileOutputStream("prueba.pdf"));
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(Registro_Oficios.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } catch (DocumentException ex) {
+            Logger.getLogger(Registro_Oficios.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        document.open();
+        try {
+            document.add(new Paragraph(jTextField2.getText().toString()));
+        } catch (DocumentException ex) {
+            Logger.getLogger(Registro_Oficios.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        document.close();
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
