@@ -13,9 +13,7 @@ import java.util.List;
  * @author jeanc
  */
 public interface IServicios {
-    public boolean registrar(String sql);
-    public boolean actualizar(String sql);
+    public boolean ejecutar_Consulta(String sql);
     public List<String> obtener(String sql);
-    public boolean eliminar(String sql);
-    public boolean consultar(String sql);
+    public boolean verificar(String sql);
 }

@@ -143,7 +143,7 @@ public class Login extends javax.swing.JFrame {
     private boolean verificar(String txt_usuario, String txt_password) {
         IServicios check_Login = new Servicios_Consultas();
         String sql="SELECT id FROM tbl_usrs WHERE usuario='" + txt_usuario + "' AND password='"+ txt_password + "'";
-        return check_Login.consultar(sql);
+        return check_Login.verificar(sql);
          
     }
     private void btn_SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SalirActionPerformed

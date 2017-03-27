@@ -12,6 +12,7 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import siegvi.vistas.Login;
+import siegvi.vistas.Registro_Oficios;
 
 /**
  *
@@ -42,7 +43,10 @@ public class Conexion {
    
     //Arranque de aplicación conectandose a servidor   
     public static void main(String args[]) {
-        Login log = new Login();
-        log.setVisible(true);
+        Registro_Oficios regis = new Registro_Oficios();
+        regis.setVisible(true);
+
+        //Login log = new Login();
+        //log.setVisible(true);
     }
 }

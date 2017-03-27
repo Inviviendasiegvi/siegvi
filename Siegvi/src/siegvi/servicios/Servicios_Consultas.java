@@ -23,15 +23,15 @@ import siegvi.conexion.Conexion;
 public class Servicios_Consultas implements IServicios {	
 	
 	@Override
-	public boolean registrar(String sql) {
+	public boolean ejecutar_Consulta(String sql) {
 		boolean registrar = false;
 		
 		Statement stm = null;
 		Connection con = null;
-		
+//	Actualizar	String sql="UPDATE CLIENTE SET usuario='"+user.getUsuario()+"', password='"+user.getPassword()+"', area='"+user.getArea()+"'" +" WHERE ID="+user.getId()
 		try {			
-			con=Conexion.conectar();
-			stm= con.createStatement();
+			con = Conexion.conectar();
+			stm = con.createStatement();
 			stm.execute(sql);
 			registrar=true;
 			stm.close();
@@ -45,7 +45,7 @@ public class Servicios_Consultas implements IServicios {
  
 	@Override
 	public List<String> obtener(String sql) {
-		Connection co =null;
+		Connection con =null;
 		Statement stm= null;
 		ResultSet rs=null;
 		
@@ -55,17 +55,17 @@ public class Servicios_Consultas implements IServicios {
 		List<String> lista= new ArrayList<String>();
 		
 		try {			
-			co= Conexion.conectar();
-			stm=co.createStatement();
+			con = Conexion.conectar();
+			stm = con.createStatement();
 			rs=stm.executeQuery(sql);
                         
                         
 			while (rs.next()) {
-                          
+                          //LLENAR LISTA DE CADENAS 
 			}
 			stm.close();
 			rs.close();
-			co.close();
+			con.close();
 		} catch (SQLException e) {
 			System.out.println("Error: Clase ClienteDaoImple, método obtener");
 			e.printStackTrace();
@@ -73,69 +73,28 @@ public class Servicios_Consultas implements IServicios {
 		
 		return lista;
 	}
- 
-	@Override
-	public boolean actualizar(String sql) {
-		Connection connect= null;
-		Statement stm= null;
-		
-		boolean actualizar=false;
-				
-//		String sql="UPDATE CLIENTE SET usuario='"+user.getUsuario()+"', password='"+user.getPassword()+"', area='"+user.getArea()+"'" +" WHERE ID="+user.getId();
-		try {
-			connect=Conexion.conectar();
-			stm=connect.createStatement();
-			stm.execute(sql);
-			actualizar=true;
-		} catch (SQLException e) {
-			System.out.println("Error: Clase ClienteDaoImple, método actualizar");
-			e.printStackTrace();
-		}		
-		return actualizar;
-	}
- 
-	@Override
-	public boolean eliminar(String sql) {
-		Connection connect= null;
-		Statement stm= null;
-		
-		boolean eliminar=false;
-				
-		//String sql="DELETE FROM tbl_usrs WHERE ID="+user.getId();
-		try {
-			connect=Conexion.conectar();
-			stm=connect.createStatement();
-			 
-			eliminar=true;
-		} catch (SQLException e) {
-			System.out.println("Error: Clase ClienteDaoImple, método eliminar");
-			e.printStackTrace();
-		}		
-		return eliminar;
-	}
-        
-        public boolean consultar(String sql) {
+
+        public boolean verificar(String sql) {
                 boolean entrar = false;
                 int identificador = 0;
-                Connection co =null;
-		Statement stm= null;
-		ResultSet rs=null;
+                Connection con = null;
+		Statement stm = null;
+		ResultSet rs = null;
                 
 		try {			
-			co= Conexion.conectar();
-			stm=co.createStatement();
-			rs=stm.executeQuery(sql);
+			con = Conexion.conectar();
+			stm = con.createStatement();
+			rs = stm.executeQuery(sql);
 			rs.next();
                         identificador = rs.getRow();
                         rs.close();
                         if(identificador != 0) entrar = true;
+                        con.close();
 		} catch (SQLException e) {
 			System.out.println("Error: Consultar");
 			e.printStackTrace();
 		}
                     
-                    return entrar;
-                }
-
-   
+            return entrar;
+        }
 }
