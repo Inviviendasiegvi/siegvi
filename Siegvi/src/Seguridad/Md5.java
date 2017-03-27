@@ -6,7 +6,7 @@ import java.security.NoSuchAlgorithmException;
 public class Md5
 {
     private static final char[] CONSTS_HEX = { '0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f' };
-    public static String encriptaEnMD5(String stringAEncriptar)
+    public  String encriptaEnMD5(String stringAEncriptar)
     {
         try
         {
@@ -24,10 +24,5 @@ public class Md5
         } catch (NoSuchAlgorithmException e) {
            return null;
         }
-    }
- 
-    public static void main(String args[])
-    {
-        System.out.println("Encriptacion en MD5 de admin: '"+encriptaEnMD5("admin")+"'");
-    }
+    }  
 }

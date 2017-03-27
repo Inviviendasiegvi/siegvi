@@ -5,10 +5,14 @@
  */
 package siegvi.vistas;
 
+import Seguridad.Md5;
+import com.mysql.jdbc.Connection;
 import static java.lang.String.valueOf;
 import javax.swing.JOptionPane;
-import siegvi.control.ControlUsuario;
-import siegvi.tablas.Usuario;
+import siegvi.conexion.Conexion;
+import siegvi.servicios.IServicios;
+import siegvi.servicios.Servicios_Consultas;
+
 
 /**
  *
@@ -120,14 +124,17 @@ public class Login extends javax.swing.JFrame {
         else{
             txt_usuario = usuario.getText();
             txt_password = String.valueOf(password.getPassword());
-            if(verificar(txt_usuario, txt_password))JOptionPane.showMessageDialog(this, "Has logrado entrar!!!!");
+            Md5 codifica = new Md5();
+            String pass_cod = codifica.encriptaEnMD5(txt_password);
+            if(verificar(txt_usuario, pass_cod))JOptionPane.showMessageDialog(this, "Has logrado entrar!!!!");
             else JOptionPane.showMessageDialog(this, "Gracias por participar, siga intentando");
         }
     }//GEN-LAST:event_btn_IngresarActionPerformed
     
     private boolean verificar(String txt_usuario, String txt_password) {
-        ControlUsuario control = new ControlUsuario();
-        return control.verificar(txt_usuario, txt_password);
+        IServicios check_Login = new Servicios_Consultas();
+        String sql="SELECT id FROM tbl_usrs WHERE usuario='" + txt_usuario + "' AND password='"+ txt_password + "'";
+        return check_Login.consultar(sql);
          
     }
     private void btn_SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SalirActionPerformed

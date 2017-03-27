@@ -6,16 +6,16 @@
 package siegvi.servicios;
 
 import java.util.List;
-import siegvi.tablas.Usuario;
+
 
 /**
  *
  * @author jeanc
  */
 public interface IServicios {
-    public boolean registrar(Usuario user);
-    public boolean actualizar(Usuario user);
-    public List<Usuario> obtener();
-    public boolean eliminar(Usuario user);
-    public boolean consultar(String user, String pass);
+    public boolean registrar(String sql);
+    public boolean actualizar(String sql);
+    public List<String> obtener(String sql);
+    public boolean eliminar(String sql);
+    public boolean consultar(String sql);
 }
