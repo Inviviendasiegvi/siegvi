@@ -46,6 +46,9 @@ public class Login extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SIEGVI");
+        setAutoRequestFocus(false);
+        setPreferredSize(new java.awt.Dimension(453, 230));
+        setResizable(false);
 
         jLabel1.setText("Usuario");
 
@@ -58,7 +61,7 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/siegvi/LOGO SIEGVI.png"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/LOGO SIEGVI.png"))); // NOI18N
 
         btn_Salir.setText("Salir");
         btn_Salir.addActionListener(new java.awt.event.ActionListener() {
@@ -72,9 +75,9 @@ public class Login extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(63, 63, 63)
+                .addGap(30, 30, 30)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -85,10 +88,10 @@ public class Login extends javax.swing.JFrame {
                             .addComponent(usuario, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
                             .addComponent(password)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btn_Ingresar)
-                        .addGap(37, 37, 37)
-                        .addComponent(btn_Salir)))
-                .addContainerGap(77, Short.MAX_VALUE))
+                        .addComponent(btn_Ingresar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_Salir, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -99,18 +102,18 @@ public class Login extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
                             .addComponent(usuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(24, 24, 24)
+                        .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(40, 40, 40)
+                        .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btn_Ingresar)
                             .addComponent(btn_Salir)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
+                        .addGap(30, 30, 30)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         pack();
@@ -126,8 +129,14 @@ public class Login extends javax.swing.JFrame {
             txt_password = String.valueOf(password.getPassword());
             Md5 codifica = new Md5();
             String pass_cod = codifica.encriptaEnMD5(txt_password);
-            if(verificar(txt_usuario, pass_cod))JOptionPane.showMessageDialog(this, "Has logrado entrar!!!!");
-            else JOptionPane.showMessageDialog(this, "Gracias por participar, siga intentando");
+            if(verificar(txt_usuario, pass_cod)){
+                JOptionPane.showMessageDialog(this, "Has logrado entrar!!!!");
+                 Menu_Principal menu_principal = new Menu_Principal();
+                menu_principal.setVisible(true);
+                this.dispose();                
+            }else{
+                JOptionPane.showMessageDialog(this, "Vuelve a intentarlo");
+            }    
         }
     }//GEN-LAST:event_btn_IngresarActionPerformed
     
@@ -138,7 +147,7 @@ public class Login extends javax.swing.JFrame {
          
     }
     private void btn_SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SalirActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_btn_SalirActionPerformed
 
     /**
